@@ -7,7 +7,7 @@ import random
 import time
 
 #env = gym.make('MountainCar-v0')
-env = gym.make("Blackjack-v0")
+env = gym.make("AirRaid-v0")
 env.reset()
 env.render()
 

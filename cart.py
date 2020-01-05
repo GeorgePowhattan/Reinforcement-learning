@@ -8,7 +8,7 @@ LEARNING_RATE = 0.2
 DISCOUNT = 0.95
 EPISODES = 10000  #how many iterations of the game we'd like to run.
 
-DISCRETE_OS_SIZE = [20, 20]
+DISCRETE_OS_SIZE = [20] * 2
 discrete_os_win_size = (env.observation_space.high - env.observation_space.low) / DISCRETE_OS_SIZE
 
 q_table = np.random.uniform(low=-2, high=0, size=(DISCRETE_OS_SIZE + [env.action_space.n]))
@@ -18,10 +18,9 @@ def get_discrete_state(state):
     discrete_state = (state - env.observation_space.low)/discrete_os_win_size
     return tuple(discrete_state.astype(np.int))
 
-
+# Number of episodes = number of games
 for episode in range(2000):
     discrete_state = get_discrete_state(env.reset())
-    print(discrete_state)
 
     done = False
 
@@ -34,14 +33,14 @@ for episode in range(2000):
 
     while not done:
         action = np.argmax(q_table[discrete_state]) # action - needs to be the best choice in the given situation, return the action for the given combination of state tuple
+        
         new_state, reward, done, _ = env.step(action)
-
         new_discrete_state = get_discrete_state(new_state)
         
         if episode % 400 == 0 and render == True:
             env.render()   
 
-        # If simulation did not end yet after last step - UPDATE Q TABLE
+        # if simulation did not end yet after last step - UPDATE Q TABLE
         if not done:
             # Maximum possible Q value in next step (for new state)
             max_future_q = np.max(q_table[new_discrete_state])
