@@ -80,7 +80,7 @@ for episode in range(episodes):
             break
         
         discrete_state = new_discrete_state
-        
+
 
 # After all episodes are over, calculate avrg reward per 400 episodes:
 print("sum of all rewards: {}".format(sum(rewards_all_episodes)))
