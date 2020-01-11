@@ -9,13 +9,13 @@ env.reset()
 epsilon = 1 # the higher, the more exploratory
 min_epsilon = 0.01
 max_epsilon = 1
-epsilon_decay = 0.0015
+epsilon_decay = 0.001
    
-episodes = 1000
-max_steps_per_turn = 500
+episodes = 20000
+max_steps_per_turn = 100
 learning_rate = 0.1
-discount_rate = 0.95
-rewards_all_episodes=[]
+discount_rate = 0.98
+rewards_all_episodes = []
 
 # Action space ---------------------------------------------------------------
 action_space_size = env.action_space.n
@@ -23,7 +23,7 @@ action_space_size = env.action_space.n
 # State space ----------------------------------------------------------------
 obs_space_size = env.observation_space.n
 
-q_table = np.random.uniform(low=-1, high=0, size=(obs_space_size, action_space_size))
+q_table = np.random.uniform(low=-2, high=0, size=(obs_space_size, action_space_size))
 
 
 # -----------------------------------------------------------------------------
@@ -38,12 +38,12 @@ for episode in range(episodes):
     epsilon = min_epsilon + (max_epsilon - min_epsilon) * np.exp(-epsilon_decay*episode)
 
     # Render environment if Xth episode is reached
-    if episode % 10 == 0:
+    '''if episode % 1000 == 0:
         render = True
         print(f"{episode}th training reached")
     else:
         render = False
-
+    '''
     done = False 
 
 
@@ -73,11 +73,25 @@ for episode in range(episodes):
             
             if reward == 1:
                 print(f"We have reached our goal in episode {episode}")
+                # Add reward to rewards
+                rewards_all_episodes.append(reward)
                 break
             
             else:
                 print(f"Fallen to ice in episode {episode}")
+                rewards_all_episodes.append(0)
                 break
 
+print("sum of all rewards: {}".format(sum(rewards_all_episodes)))
+print("episodes: {}".format(episodes))
+print("length of rewards_all_episodes: {}".format(len(rewards_all_episodes)))
+
+rewards_per_thousand_episodes = np.split(np.array(rewards_all_episodes), episodes/1000)
+count = 1000
+
+print("\n********Average reward per 1000 episodes********\n")
+for r in rewards_per_thousand_episodes:
+    print(count, ": ", sum(r)/1000)
+    count += 1000
 
 env.close()

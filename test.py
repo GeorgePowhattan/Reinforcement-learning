@@ -3,7 +3,7 @@ import numpy as np
 
 min_epsilon = 0
 max_epsilon = 1
-epsilon_decay = 0.002
+epsilon_decay = 0.01
 epsilon = []
 
 for episode in range(1200):
