@@ -10,6 +10,7 @@ discrete_os_win_size = (env.observation_space.high - env.observation_space.low) 
 print('\n*********** Basic Action/Observation space type **********')
 print('Action space: ', env.action_space)
 print('Observ space: ', env.observation_space)
+print('Goal position: ', env.goal_position())
 
 print('\n*********** Action space parameters **********')
 print('Action space size: ', env.action_space.n)

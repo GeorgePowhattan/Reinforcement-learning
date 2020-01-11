@@ -10,7 +10,7 @@ min_epsilon = 0.01
 max_epsilon = 1
 epsilon_decay = 0.002
    
-episodes = 2000
+episodes = 1200
 max_steps_per_turn = 500
 learning_rate = 0.1
 discount_rate = 0.95
@@ -69,16 +69,17 @@ for episode in range(episodes):
         # update Q-table
         q_table[discrete_state + (action,)] = q_table[discrete_state + (action,)] * (1 - learning_rate)  +  learning_rate * (reward + discount_rate * np.max(q_table[new_discrete_state]))
 
+        discrete_state = new_discrete_state
 
-        if new_state[0] >= env.goal_position:
+        #if reward == 1:
+        if new_state[0] >= 0.5:
             print(f"We have reached our goal in episode {episode}")
-            q_table[discrete_state + (action,)] = 0
+            # q_table[discrete_state + (action,)] = 0
             # reward object not working dor this continuous environment -> we must manually add 1 to last "rewards_all_episodes" item
             rewards_all_episodes[-1] += 1
             
             break
         
-        discrete_state = new_discrete_state
 
 
 # After all episodes are over, calculate avrg reward per 400 episodes:
