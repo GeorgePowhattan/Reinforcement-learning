@@ -12,6 +12,3 @@ for episode in range(num_episodes):
 
     # Exploration rate decay   
     # Add current episode reward to total rewards list
-
-
-It only looks 1 step in the future ???
