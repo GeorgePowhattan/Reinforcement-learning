@@ -1,12 +1,14 @@
 import gym
 import random
 import numpy as np
+'''
+import tensorflow
 import tflearn
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.estimator import regression
 from statistics import median, mean
 from collections import Counter
-
+'''
 LR = 1e-3
 env = gym.make("CartPole-v0")
 env.reset()
@@ -20,6 +22,7 @@ def some_random_games_first():
     # Each of these is its own game.
     for episode in range(5):
         env.reset()
+        print(episode)
         # this is each frame, up to 200...but we wont make it that far.
         for t in range(200):
             # This will display the environment
@@ -37,6 +40,7 @@ def some_random_games_first():
             observation, reward, done, info = env.step(action)
             
             if done:
+                print(t)
                 break
                 
 some_random_games_first()
