@@ -1,11 +1,11 @@
-# The point of this script is to generate randomly successful training data together with actions that led to them to ??? train the NN ???
+# Initial_population - to generate randomly successful training data together with actions that led to them to ??? train the NN ???
 
 import gym
 import numpy as np
 import random
 from statistics import median, mean
 from collections import Counter
-import tensorflow
+#import tensorflow as tf
 import tflearn
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.estimator import regression
@@ -78,11 +78,11 @@ def initial_population():
     
     return training_data
 
-
+'''
 # This NN will be fed by our Training data from initial_population() func
 def neural_network_model(input_size):
 
-    network = input_data(shape=[None, input_size, 1], name='input')
+    network = input_data(shape=[None, input_size, 1], name='input')   # why None?
 
     network = fully_connected(network, 128, activation='relu')
     network = dropout(network, 0.8)
@@ -116,3 +116,9 @@ def train_model(training_data, model=False):
     
     model.fit({'input': X}, {'targets': y}, n_epoch=5, snapshot_step=500, show_metric=True, run_id='openai_learning')
     return model
+'''
+
+sample = initial_population()
+
+print(np.array(sample).shape)
+print(type(sample))

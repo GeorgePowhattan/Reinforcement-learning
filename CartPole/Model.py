@@ -33,7 +33,7 @@ def neural_network_model(input_size):
 
 def train_model(training_data, model=False):
 
-    X = np.array([i[0] for i in training_data]).reshape(-1,len(training_data[0][0]),1)
+    X = np.array([i[0] for i in training_data]).reshape(-1, len(training_data[0][0]), 1)
     y = [i[1] for i in training_data]
 
     if not model:
