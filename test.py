@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import tensorflow as tf
 
 min_epsilon = 0
 max_epsilon = 1

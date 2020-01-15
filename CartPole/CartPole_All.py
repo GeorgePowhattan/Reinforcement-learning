@@ -17,9 +17,9 @@ env = gym.make("CartPole-v0")
 env.reset()
 
 # Hyperparameters:
-#goal_steps = 500
-#score_requirement = 50
-#initial_games = 10000
+goal_steps = 500
+score_requirement = 50
+initial_games = 10000
 
 scores = []
 choices = []
