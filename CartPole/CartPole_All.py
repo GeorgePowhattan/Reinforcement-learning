@@ -2,17 +2,9 @@ import gym
 import random
 import numpy as np
 
-#import tensorflow
-#import tflearn
-#from tflearn.layers.core import input_data, dropout, fully_connected
-#from tflearn.layers.estimator import regression
-#from statistics import median, mean
-#from collections import Counter
-
 from Model import neural_network_model, train_model
 from Initial_population import initial_population
 
-#LR = 1e-3
 env = gym.make("CartPole-v0")
 env.reset()
 
@@ -23,7 +15,6 @@ initial_games = 10000
 
 scores = []
 choices = []
-
 
 if __name__ == "__main__":
     
