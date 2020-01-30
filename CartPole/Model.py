@@ -4,6 +4,8 @@ import tflearn
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.estimator import regression
 
+LR = 1e-3
+
 # This NN will be fed by our Training data from initial_population() func
 def neural_network_model(input_size):
 
